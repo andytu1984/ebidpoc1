@@ -1,0 +1,13 @@
+service {
+	"ebidpoc.db::Tables.Bid" as "Bid" navigates ("ToBidderListAssoc" as "BidderListRef")  
+//	create using "xsjs:BidCRUDMethod.xsjslib::biddingCreate";
+	create using "xsjs:CreateBid.xsjslib::insertData";
+	"ebidpoc.db::Tables.BidRefBidder" as "BidderList" navigates ("ToBidderMasterData" as "BidderInfo");
+	"ebidpoc.db::Tables.Bidder" as "BidderMasterData";
+	
+	association "ToBidderListAssoc" principal "Bid"("BiddingId") 
+	multiplicity "1" dependent "BidderList"("BidId") multiplicity "*";
+	association "ToBidderMasterData" principal "BidderList"("BidderId") 
+	multiplicity "1" dependent "BidderMasterData"("BidderId") multiplicity "*";		
+	
+	 }

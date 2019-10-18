@@ -1,0 +1,2 @@
+SEQUENCE "ebidpoc.db.sequences::biddingSeqId" START WITH 2000000000 MAXVALUE 2999999999
+RESET BY SELECT IFNULL(MAX("BiddingId"), 2000000000) + 1 FROM "ebidpoc.db::Tables.Bid"

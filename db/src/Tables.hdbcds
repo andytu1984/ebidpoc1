@@ -1,4 +1,77 @@
 namespace ebidpoc.db;
 
+@OData.publish : true
+/*@@layout{"layoutInfo":{"x":-364.4189453125,"y":-184}}*/
 context Tables {
+    type BusinessKey : String(10);
+    type AmountT : Decimal(15, 2);
+    type CurrencyT : String(5);
+    type StatusT : String(1);
+    
+    entity Bid {
+        key BiddingId          : BusinessKey;
+            Title              : String(30);
+            Context            : String(2000);
+            StartDate          : LocalDate;
+            EndDate            : LocalDate;
+            // BiddingOpeningDate : LocalDate;
+            InitialPrice       : AmountT;
+            Currency           : CurrencyT;
+            Status             : String(1);
+            CreatedBy			: String(20);
+            BidPersonel			: String(20);
+            BidManager			: String(20);
+    }
+    technical configuration {
+        column store;
+    };
+
+    entity Bidder {
+        key BidderId   : BusinessKey;
+            Email      : String(40);
+            BidderName : String(30);
+            CreateDate : LocalDate;
+    }
+    technical configuration {
+        column store;
+    };
+    entity BidRefBidder {
+        key BidId  : BusinessKey; // Bidding ID
+        key	BidderId   : BusinessKey; // Bidder ID
+        	IsNotified : String(1);
+        	AccessKey	: String(50);
+            CreateDate : LocalDate;   // Create Date
+    }
+    technical configuration {
+        column store;
+    };
+    // entity BiddingRefBidder {
+    //     key BiddingId  : BusinessKey; // Bidding ID
+    //     key BidderId   : BusinessKey; // Bidder ID
+    //         CreateDate : LocalDate;   // Create Date
+    // }
+    // technical configuration {
+    //     column store;
+    // };
+    
+    entity BiddingHistory {
+        key BiddingId    : BusinessKey;
+        key BidderId     : BusinessKey;
+        key Biddingdate  : String(20);
+            BiddingPrice : AmountT;
+            Currency     : CurrencyT;
+            WinFlag      : String(1);
+    }
+    technical configuration {
+        column store;
+    };
+    
+    entity Conguration {
+        key Key    : String(50);
+        key Seq     : String(5);
+			Value	: String(100);
+    }
+    technical configuration {
+        column store;
+    };    
 };

@@ -1,0 +1,4 @@
+service {
+	"ebidpoc.db::Tables.Bidder" as "BidderList"
+	create using "xsjs:CreateBidder.xsjslib::insertData";
+}

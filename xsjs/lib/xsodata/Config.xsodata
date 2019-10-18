@@ -1,0 +1,4 @@
+service {
+	"ebidpoc.db::Tables.Conguration" as "ConfigList"
+	create using "xsjs:CreateConfig.xsjslib::insertData";
+}

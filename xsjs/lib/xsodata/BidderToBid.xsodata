@@ -1,0 +1,3 @@
+service {
+"ebidpoc.db::BidderToBidView" as "BidderToBid" key("BidId","BidderId");
+}
