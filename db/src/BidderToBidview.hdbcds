@@ -1,0 +1,14 @@
+namespace ebidpoc.db;
+using "ebidpoc.db::Tables" as Bid;
+
+define view BidderToBidView as
+    select from     Bid.Bidder as a
+    inner join      Bid.BidRefBidder as b
+    on a.BidderId      = b.BidderId
+    {
+        b.BidId           as "BidId",
+        a.BidderId        as "BidderId",
+        a.BidderName      as "BidderName",
+        a.Email           as "Email",
+        b.AccessKey       as "AccessKey"
+    };
